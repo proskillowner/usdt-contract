@@ -19,34 +19,34 @@ contract USDTTest is Test {
         console.log("Token decimals :", usdt.decimals());
 
         address mintAddress = address(0x1);
-        uint mintAmount = 1000 * 10 ** usdt.decimals();
+        uint256 mintAmount = 1000 * 10 ** usdt.decimals();
 
-        uint beforeMintAmount = usdt.balanceOf(mintAddress);
+        uint256 beforeMintAmount = usdt.balanceOf(mintAddress);
         vm.prank(usdt.owner());
         usdt.mint(mintAddress, mintAmount);
-        uint afterMintAmount = usdt.balanceOf(mintAddress);
+        uint256 afterMintAmount = usdt.balanceOf(mintAddress);
 
         assertEq(mintAmount, afterMintAmount - beforeMintAmount);
         console.log("Mint passed");
 
         address transferAddress = address(0x2);
-        uint transferAmount = 500 * 10 ** usdt.decimals();
+        uint256 transferAmount = 500 * 10 ** usdt.decimals();
 
-        uint beforeTransferAmount = usdt.balanceOf(transferAddress);
+        uint256 beforeTransferAmount = usdt.balanceOf(transferAddress);
         vm.prank(mintAddress);
         usdt.transfer(transferAddress, transferAmount);
-        uint afterTransferAmount = usdt.balanceOf(transferAddress);
+        uint256 afterTransferAmount = usdt.balanceOf(transferAddress);
 
         assertEq(transferAmount, afterTransferAmount - beforeTransferAmount);
         console.log("Transfer passed");
 
         address burnAddress = transferAddress;
-        uint burnAmount = 200 * 10 ** usdt.decimals();
+        uint256 burnAmount = 200 * 10 ** usdt.decimals();
 
-        uint beforeBurnAmount = usdt.balanceOf(burnAddress);
+        uint256 beforeBurnAmount = usdt.balanceOf(burnAddress);
         vm.prank(burnAddress);
         usdt.burn(burnAmount);
-        uint afterBurnAmount = usdt.balanceOf(burnAddress);
+        uint256 afterBurnAmount = usdt.balanceOf(burnAddress);
 
         assertEq(burnAmount, beforeBurnAmount - afterBurnAmount);
         console.log("Self burn passed");

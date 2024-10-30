@@ -12,15 +12,15 @@ contract USDT is ERC20, Ownable {
         return 6;
     }
 
-    function mint(address account, uint value) public onlyOwner {
+    function mint(address account, uint256 value) public onlyOwner {
         _mint(account, value);
     }
 
-    function burn(uint value) public {
+    function burn(uint256 value) public {
         _burn(msg.sender, value);
     }
 
-    function burn(address account, uint value) public onlyOwner {
+    function burn(address account, uint256 value) public onlyOwner {
         _burn(account, value);
     }
 }

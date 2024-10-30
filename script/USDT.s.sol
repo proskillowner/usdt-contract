@@ -8,7 +8,7 @@ contract USDTScript is Script {
     function setUp() public {}
 
     function run() public {
-        uint privateKey = vm.envUint("PRIVATE_KEY");
+        uint256 privateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(privateKey);
 
         USDT usdt = new USDT();
